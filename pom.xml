@@ -28,6 +28,11 @@
             <id>spigotmc-repo</id>
             <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
         </repository>
+        <!-- for JsonCConfiguration -->
+        <repository>
+            <id>onarandombox</id>
+            <url>http://repo.onarandombox.com/content/groups/public</url>
+        </repository>
     </repositories>
 
     <dependencies>
@@ -36,14 +41,6 @@
             <artifactId>spigot-api</artifactId>
             <version>1.16.4-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.spigotmc</groupId>
-            <artifactId>spigot-api</artifactId>
-            <version>1.16.4-R0.1-SNAPSHOT</version>
-            <scope>provided</scope>
-            <classifier>javadoc</classifier>
-            <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>org.jetbrains</groupId>
@@ -63,6 +60,12 @@
             <version>0.1.1</version>
             <scope>compile</scope>
         </dependency>
+        <!-- for JsonConfiguration -->
+        <dependency>
+            <groupId>net.minidev</groupId>
+            <artifactId>json-smart</artifactId>
+            <version>1.1.1</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -73,6 +76,7 @@
                 <version>3.1.0</version>
                 <configuration>
                     <relocations>
+                        <!-- bstats -->
                         <relocation>
                             <pattern>org.bstats</pattern>
                             <shadedPattern>com.github.groomon.gslib.bstats</shadedPattern>
