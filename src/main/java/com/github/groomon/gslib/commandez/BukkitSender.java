@@ -4,6 +4,7 @@ import com.github.groomon.commandez.Sender;
 import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
 
+@Deprecated
 public class BukkitSender implements Sender {
 
     private final CommandSender sender;
