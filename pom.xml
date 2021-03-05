@@ -6,7 +6,7 @@
 
     <groupId>com.github.groomon</groupId>
     <artifactId>gslib</artifactId>
-    <version>0.3.0</version>
+    <version>0.4.0</version>
 
     <name>gslib</name>
     <url>https://github.com/Groomon/gslib/</url>
@@ -52,12 +52,6 @@
             <groupId>org.bstats</groupId>
             <artifactId>bstats-bukkit</artifactId>
             <version>2.2.1</version>
-        </dependency>
-        <!-- deprecated -->
-        <dependency>
-            <groupId>com.github.groomon</groupId>
-            <artifactId>commandez</artifactId>
-            <version>0.1.1</version>
         </dependency>
         <!-- for JsonConfiguration -->
         <dependency>
