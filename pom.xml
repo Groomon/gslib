@@ -6,7 +6,7 @@
 
     <groupId>com.github.groomon</groupId>
     <artifactId>gslib</artifactId>
-    <version>0.1.1</version>
+    <version>0.3.0</version>
 
     <name>gslib</name>
     <url>https://github.com/Groomon/gslib/</url>
@@ -52,14 +52,12 @@
             <groupId>org.bstats</groupId>
             <artifactId>bstats-bukkit</artifactId>
             <version>2.2.1</version>
-            <scope>compile</scope>
         </dependency>
         <!-- deprecated -->
         <dependency>
             <groupId>com.github.groomon</groupId>
             <artifactId>commandez</artifactId>
             <version>0.1.1</version>
-            <scope>compile</scope>
         </dependency>
         <!-- for JsonConfiguration -->
         <dependency>
@@ -67,31 +65,73 @@
             <artifactId>json-smart</artifactId>
             <version>1.1.1</version>
         </dependency>
+        <dependency>
+            <groupId>cloud.commandframework</groupId>
+            <artifactId>cloud-bukkit</artifactId>
+            <version>1.4.0</version>
+        </dependency>
+        <dependency>
+            <groupId>cloud.commandframework</groupId>
+            <artifactId>cloud-annotations</artifactId>
+            <version>1.4.0</version>
+        </dependency>
     </dependencies>
 
     <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
-                <version>3.1.0</version>
-                <configuration>
-                    <relocations>
-                        <!-- bstats -->
-                        <relocation>
-                            <pattern>org.bstats</pattern>
-                            <shadedPattern>com.github.groomon.gslib.bstats</shadedPattern>
-                        </relocation>
-                    </relocations>
-                </configuration>
+                <version>3.2.4</version>
                 <executions>
                     <execution>
                         <phase>package</phase>
                         <goals>
                             <goal>shade</goal>
                         </goals>
+                        <configuration>
+                            <createDependencyReducedPom>false</createDependencyReducedPom>
+                        </configuration>
                     </execution>
                 </executions>
+                <configuration>
+                    <dependencyReducedPomLocation>${project.build.directory}/dependency-reduced-pom.xml</dependencyReducedPomLocation>
+                    <filters>
+                        <filter>
+                            <artifact>*:*</artifact>
+                            <excludes>
+                                <exclude>META-INF/*.MF</exclude>
+                            </excludes>
+                        </filter>
+                    </filters>
+                    <relocations>
+                        <!-- bstats -->
+                        <relocation>
+                            <pattern>org.bstats</pattern>
+                            <shadedPattern>com.github.groomon.gslib.bstats</shadedPattern>
+                        </relocation>
+                        <!-- cloud-commandframework & dependencies -->
+                        <relocation>
+                            <pattern>cloud.commandframework</pattern>
+                            <shadedPattern>com.github.groomon.gslib.libs.cloud</shadedPattern>
+                        </relocation>
+                        <relocation>
+                            <pattern>io.leangen.geantyref</pattern>
+                            <shadedPattern>com.github.groomon.gslib.libs.typetoken</shadedPattern>
+                        </relocation>
+                        <!-- JsonConfiguration -->
+                        <relocation>
+                            <pattern>net.minidev.json-smart</pattern>
+                            <shadedPattern>com.github.groomon.gslib.libs.json-smart</shadedPattern>
+                        </relocation>
+                    </relocations>
+                </configuration>
             </plugin>
         </plugins>
     </build>

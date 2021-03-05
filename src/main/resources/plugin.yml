@@ -1,0 +1,7 @@
+main: com.github.groomon.gslib.Gslib
+name: gslib
+version: '${project.version}'
+description: A libary to help in plugin development
+author: Groomon
+website: https://github.com/Groomon/gslib
+prefix: gslib
