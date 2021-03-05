@@ -357,4 +357,16 @@ public class ImmutableVector extends Vector {
     public Vector setZ(float z) {
         throw new UnsupportedOperationException("Cannot modify immutable Vector");
     }
+
+    /**
+     * Copies another vector
+     *
+     * @param vec The other vector
+     * @return the same vector
+     */
+    @NotNull
+    @Override
+    public Vector copy(@NotNull Vector vec) {
+        throw new UnsupportedOperationException("Cannot modify immutable Vector");
+    }
 }
